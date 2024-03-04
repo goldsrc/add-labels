@@ -5,8 +5,8 @@ inputs:
     description: "Labels to add"
     required: true
 runs:
-  using: "node12"
+  using: "node20"
   main: "dist/index.js"
 branding:
   icon: "plus"
-  color: "blue"
+  color: "purple"

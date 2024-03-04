@@ -1,5 +1,5 @@
-const core = require("@actions/core");
-const { GitHub, context } = require("@actions/github");
+import core from "@actions/core";
+import { getOctokit, context } from "@actions/github";
 
 (async () => {
   try {
@@ -9,17 +9,19 @@ const { GitHub, context } = require("@actions/github");
       return;
     }
 
-    const github = new GitHub(githubToken);
+    const octokit = getOctokit(githubToken);
     const { owner, repo } = context.repo;
+
     const labels = core
       .getInput("labels")
       .split("\n")
       .filter((x) => x !== "");
+
     const issueNumber = context.payload.number;
 
     core.info(`Add labels: ${labels} to ${owner}/${repo}#${issueNumber}`);
 
-    await github.issues.addLabels({
+    await octokit.rest.issues.addLabels({
       owner,
       repo,
       issue_number: issueNumber,

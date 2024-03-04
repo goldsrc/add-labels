@@ -10,7 +10,7 @@ A GitHub Action to add labels on PR / Issue events
 
 ## Example usage
 
-```
+```yaml
 name: Add Label
 on:
   pull_request:
@@ -36,8 +36,12 @@ jobs:
 
 ## Update compiled files
 
+```bash
+pnpm i
+npm i -g @vercel/ncc
+ncc build src/index.ts
 ```
-npm i
-npm i -g @zeit/ncc
-ncc build index.js
-```
+
+## Acknowledgements
+
+forked from [christianvuerings/add-labels](https://github.com/christianvuerings/add-labels)
