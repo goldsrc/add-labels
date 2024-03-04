@@ -28972,47 +28972,6 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 3847:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core_1 = __importDefault(__nccwpck_require__(3033));
-const github_1 = __nccwpck_require__(7872);
-(async () => {
-    try {
-        const githubToken = process.env["GITHUB_TOKEN"];
-        if (!githubToken) {
-            core_1.default.setFailed("GITHUB_TOKEN does not exist.");
-            return;
-        }
-        const octokit = (0, github_1.getOctokit)(githubToken);
-        const { owner, repo } = github_1.context.repo;
-        const labels = core_1.default
-            .getInput("labels")
-            .split("\n")
-            .filter((x) => x !== "");
-        const issueNumber = github_1.context.payload.number;
-        core_1.default.info(`Add labels: ${labels} to ${owner}/${repo}#${issueNumber}`);
-        await octokit.rest.issues.addLabels({
-            owner,
-            repo,
-            issue_number: issueNumber,
-            labels,
-        });
-    }
-    catch (error) {
-        core_1.default.setFailed(error.message);
-    }
-})();
-
-
-/***/ }),
-
 /***/ 9491:
 /***/ ((module) => {
 
@@ -30895,17 +30854,90 @@ module.exports = parseParams
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__nccwpck_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__nccwpck_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__nccwpck_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__nccwpck_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(3847);
-/******/ 	module.exports = __webpack_exports__;
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+__nccwpck_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(3033);
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(7872);
+/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(_actions_github__WEBPACK_IMPORTED_MODULE_1__);
+
+
+(async () => {
+    try {
+        const githubToken = process.env["GITHUB_TOKEN"];
+        if (!githubToken) {
+            _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setFailed("GITHUB_TOKEN does not exist.");
+            return;
+        }
+        const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(githubToken);
+        const { owner, repo } = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo;
+        const labels = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput("labels")
+            .split("\n")
+            .filter((x) => x !== "");
+        const issueNumber = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.number;
+        _actions_core__WEBPACK_IMPORTED_MODULE_0___default().info(`Add labels: ${labels} to ${owner}/${repo}#${issueNumber}`);
+        await octokit.rest.issues.addLabels({
+            owner,
+            repo,
+            issue_number: issueNumber,
+            labels,
+        });
+    }
+    catch (error) {
+        _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setFailed(error.message);
+    }
+})();
+
+})();
+
+module.exports = __webpack_exports__;
 /******/ })()
 ;
