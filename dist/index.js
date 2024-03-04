@@ -30914,16 +30914,16 @@ __nccwpck_require__.r(__webpack_exports__);
     try {
         const githubToken = process.env["GITHUB_TOKEN"];
         if (!githubToken) {
-            _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setFailed("GITHUB_TOKEN does not exist.");
+            (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)("GITHUB_TOKEN does not exist.");
             return;
         }
         const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(githubToken);
         const { owner, repo } = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo;
-        const labels = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput("labels")
+        const labels = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("labels")
             .split("\n")
             .filter((x) => x !== "");
         const issueNumber = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.number;
-        _actions_core__WEBPACK_IMPORTED_MODULE_0___default().info(`Add labels: ${labels} to ${owner}/${repo}#${issueNumber}`);
+        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.info)(`Add labels: ${labels} to ${owner}/${repo}#${issueNumber}`);
         await octokit.rest.issues.addLabels({
             owner,
             repo,
@@ -30932,7 +30932,7 @@ __nccwpck_require__.r(__webpack_exports__);
         });
     }
     catch (error) {
-        _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setFailed(error.message);
+        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
     }
 })();
 
