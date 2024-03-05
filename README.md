@@ -1,12 +1,16 @@
 # Add Labels
 
-A GitHub Action to add labels on PR / Issue events
+A GitHub Action to add labels on PR / Issues.
 
 ## Inputs
 
 ### `labels`
 
 **Required** Labels to add.
+
+### `issue_number`
+
+**Optional** Issue/Pull Request number
 
 ## Example usage
 
@@ -15,7 +19,7 @@ name: Add Label
 on:
   pull_request:
     branches:
-      - master
+      - main
     types:
       - opened
 

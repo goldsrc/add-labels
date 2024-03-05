@@ -30920,15 +30920,25 @@ __nccwpck_require__.r(__webpack_exports__);
         const octokit = (0,_actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit)(githubToken);
         const { owner, repo } = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo;
         const labels = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("labels")
-            .split("\n")
+            .split(/[\n,]/)
             .filter((x) => x !== "");
-        const issueNumber = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.number;
-        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.info)(`Add labels: ${labels} to ${owner}/${repo}#${issueNumber}`);
+        const issueNumber = Number((0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("issue_number", { required: false }) ||
+            _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.pull_request?.number ||
+            _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.number);
+        if (isNaN(issueNumber)) {
+            (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)("cannot find issue/PR number!");
+            return;
+        }
+        if (issueNumber <= 0) {
+            (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)("issue/PR number should be greater than 0!");
+            return;
+        }
+        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.info)(`Adding labels: ${labels.join(", ")} to ${owner}/${repo}#${issueNumber}`);
         await octokit.rest.issues.addLabels({
             owner,
             repo,
-            issue_number: issueNumber,
             labels,
+            issue_number: issueNumber,
         });
     }
     catch (error) {
