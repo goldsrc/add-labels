@@ -2,6 +2,11 @@
 
 A GitHub Action to add labels on PR / Issues.
 
+## Requirements
+
+- [node.js](https://nodejs.org/en/download/)
+- [pnpm](https://pnpm.io/installation)
+
 ## Inputs
 
 ### `labels`
